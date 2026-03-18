@@ -1,114 +1,195 @@
 <?php
 session_start();
+include "data.php"; 
 
 $menu = $_GET['menu'] ?? 'utama';
+include "header.php"; 
 
-if ($menu === 'utama') {
-    $data = [
-        ['id' => 1, 'nama' => 'Kuih Semperit', 'gambar' => 'kuih_semperit.png', 'harga' => ['pek_mini' => 2.00, 'kecil' => 17.00, 'besar' => 34.00]],
-        ['id' => 2, 'nama' => 'Biskut Mazola', 'gambar' => 'biskut_mazola.png', 'harga' => ['pek_mini' => 2.00, 'kecil' => 20.00, 'besar' => 40.00]],
-        ['id' => 3, 'nama' => 'Buah Pinggang', 'gambar' => 'buah_pinggang.jpg', 'harga' => ['pek_mini' => 2.00, 'kecil' => 22.00, 'besar' => 44.00]],
-        ['id' => 4, 'nama' => 'Tart Nanas', 'gambar' => 'tart_nanas.png', 'harga' => ['pek_mini' => 2.00, 'kecil' => 25.00, 'besar' => 50.00]],
-    ];
-    ?>
-    <!DOCTYPE html>
-    <html lang="ms">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Biskut Klasik - Utama</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Questrial&display=swap" rel="stylesheet">
-        <style>
-            .page-body { font-family: 'Questrial', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; min-height: 100vh; display: flex; flex-direction: column; box-sizing: border-box; }
-            .container { max-width: 1200px; margin: 0 auto; flex: 1; width: 100%; }
-            .header-wrapper { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background-color: #333; padding: 20px; border-radius: 8px; }
-            .site-title { font-family: 'Imperial Script', cursive; font-size: 4.5rem; color: #fff; margin: 0; padding: 0; line-height: 1; }
-            .nav-menu { display: flex; gap: 20px; align-items: center; }
-            .nav-link { text-decoration: none; color: #fff; font-weight: normal; font-size: 1.4rem; }
-            .nav-link:hover { color: #e44d26; }
-            .nav-link.active { color: #e44d26; border-bottom: 2px solid #e44d26; }
-            .page-title { color: #333; border-bottom: 2px solid #ddd; padding-bottom: 10px; text-align: center; }
-            .gallery-row { display: flex; justify-content: center; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
-            .gallery-thumb { width: 150px; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-            .instructions-section { margin-top: 40px; padding: 30px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
-            .instructions-section h3 { margin-top: 0; color: #c63816; font-size: 1.5rem; }
-            .instructions-section p { line-height: 1.7; color: #555; max-width: 800px; margin-left: auto; margin-right: auto; font-size: 1.1rem; }
-            .main-footer { background-color: #333; text-align: center; margin-top: 30px; color: #fff; padding: 20px; border-radius: 8px; }
-            @media print { .header-wrapper, .main-footer, .action-buttons, .nav-menu { display: none !important; } .page-body { background-color: #fff; padding: 0; } .container { width: 100%; max-width: 100%; margin: 0; } }
-        </style>
-    </head>
-    <body class="page-body">
-        <div class="container">
-            <div class="header-wrapper">
-                <h2 class="site-title">Biskut Klasik</h2>
-                <nav class="nav-menu">
-                    <a href="index.php?menu=utama" class="nav-link active">Utama</a>
-                    <a href="index.php?menu=tempah" class="nav-link">Tempah</a>
-                    <a href="index.php?menu=invois" class="nav-link">Invois</a>
-                </nav>
+if ($menu === 'utama'): ?>
+    <h1 class="page-title">Selamat Datang</h1>
+    
+    <div class="gallery-row">
+        <?php foreach ($data as $produk): ?>
+            <div class="gallery-item">
+                <img src="gambar/<?= htmlspecialchars($produk['gambar']) ?>" 
+                     alt="<?= htmlspecialchars($produk['nama']) ?>" 
+                     class="gallery-thumb">
+                <p><?= htmlspecialchars($produk['nama']) ?></p>
             </div>
-            <h1 class="page-title">Selamat Datang</h1>
-            <div class="gallery-row">
-                <?php foreach ($data as $produk): ?>
-                    <img src="gambar/<?= htmlspecialchars($produk['gambar']) ?>" alt="<?= htmlspecialchars($produk['nama']) ?>" class="gallery-thumb">
-                <?php endforeach; ?>
-            </div>
-            <div class="instructions-section">
-                <h3>Cara Membuat Tempahan</h3>
-                <p>
-                    Selamat datang ke Biskut Klasik! Untuk membuat tempahan, sila ikuti langkah-langkah mudah ini. Mula-mula, klik pada menu <strong>Tempah</strong> di bahagian atas. Isikan kuantiti biskut yang anda inginkan dan masukkan nama anda, kemudian klik butang <strong>Teruskan</strong>. Invois akan dipaparkan secara automatik. Sila klik butang <strong>Cetak</strong> untuk mencetak invois tersebut. Invois ini perlu diserahkan kepada kami semasa membuat tempahan. Bayaran boleh dibuat secara tunai atau imbasan Kod QR semasa hari pengambilan tempahan. Terima kasih!
-                </p>
-            </div>
-        </div>
-        <footer class="main-footer">&copy; 2026 Sabri bin Saep</footer>
-    </body>
-    </html>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="instructions-section">
+        <h3 class="instruction-title">Cara Membuat Tempahan</h3>
+        <p>
+            Selamat datang ke Biskut Klasik! Untuk membuat tempahan, sila ikuti langkah-langkah mudah ini. 
+            Mula-mula, klik pada menu <strong>Tempah</strong> di bahagian atas. Isikan kuantiti biskut yang 
+            anda inginkan dan masukkan nama anda, kemudian klik butang <strong>Teruskan</strong>. 
+            Invois akan dipaparkan secara automatik. Sila klik butang <strong>Cetak</strong> untuk 
+            mencetak invois tersebut. Invois ini perlu diserahkan kepada kami semasa membuat tempahan. 
+            Bayaran boleh dibuat secara tunai atau imbasan Kod QR semasa hari pengambilan tempahan. Terima kasih!
+        </p>
+    </div>
+
+<?php 
+elseif ($menu === 'tempah'): ?>
     <?php
-} elseif ($menu === 'tempah') {
-    $data = [
-        ['id' => 1, 'nama' => 'Kuih Semperit', 'gambar' => 'kuih_semperit.png', 'harga' => ['pek_mini' => 2.00, 'kecil' => 17.00, 'besar' => 34.00]],
-        ['id' => 2, 'nama' => 'Biskut Mazola', 'gambar' => 'biskut_mazola.png', 'harga' => ['pek_mini' => 2.00, 'kecil' => 20.00, 'besar' => 40.00]],
-        ['id' => 3, 'nama' => 'Buah Pinggang', 'gambar' => 'buah_pinggang.jpg', 'harga' => ['pek_mini' => 2.00, 'kecil' => 22.00, 'besar' => 44.00]],
-        ['id' => 4, 'nama' => 'Tart Nanas', 'gambar' => 'tart_nanas.png', 'harga' => ['pek_mini' => 2.00, 'kecil' => 25.00, 'besar' => 50.00]],
-    ];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nama_pelanggan = isset($_POST['nama_pelanggan']) ? htmlspecialchars(trim($_POST['nama_pelanggan'])) : "Pelanggan";
-        $tempahan_input = isset($_POST['tempahan']) ? $_POST['tempahan'] : [];
-        $item_tempahan = [];
-        $jumlah_besar = 0;
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $nama_pelanggan = $_POST['nama_pelanggan'] ?? "Pelanggan";
+        $tempahan_input = $_POST['tempahan'] ?? [];
+        $items = [];
+        $total = 0;
 
-        foreach ($tempahan_input as $produk_id => $saiz_list) {
+        foreach ($tempahan_input as $id => $saiz_list) {
             $produk_detail = null;
-            foreach ($data as $p) {
-                if ($p['id'] == $produk_id) {
-                    $produk_detail = $p;
-                    break;
-                }
-            }
+            foreach ($data as $p) if ($p['id'] == $id) $produk_detail = $p;
+            
             if ($produk_detail) {
-                foreach ($saiz_list as $saiz => $kuantiti) {
-                    $kuantiti = (int)$kuantiti;
-                    if ($kuantiti > 0) {
-                        if (isset($produk_detail['harga'][$saiz])) {
-                            $harga_seunit = $produk_detail['harga'][$saiz];
-                            $jumlah_harga = $kuantiti * $harga_seunit;
-                            $item_tempahan[] = [
-                                'nama_produk' => $produk_detail['nama'],
-                                'saiz' => ucwords(str_replace('_', ' ', $saiz)),
-                                'harga_seunit' => $harga_seunit,
-                                'kuantiti' => $kuantiti,
-                                'jumlah_harga' => $jumlah_harga
-                            ];
-                            $jumlah_besar += $jumlah_harga;
-                        }
+                foreach ($saiz_list as $saiz => $qty) {
+                    $qty = (int)$qty;
+                    if ($qty > 0) {
+                        $harga = $produk_detail['harga'][$saiz];
+                        $jumlah = $qty * $harga;
+                        $total += $jumlah;
+                        $items[] = [
+                            'nama_produk' => $produk_detail['nama'],
+                            'saiz' => ucwords(str_replace('_',' ',$saiz)),
+                            'harga_seunit' => $harga,
+                            'kuantiti' => $qty,
+                            'jumlah_harga' => $jumlah
+                        ];
                     }
                 }
             }
         }
 
+<<<<<<< HEAD
+        if ($total > 0) {
+            $_SESSION['invois_data'] = [
+                'no_invois' => 'INV-' . rand(10000, 99999),
+                'nama_pelanggan' => htmlspecialchars($nama_pelanggan),
+                'tarikh' => date("d/m/Y"),
+                'items' => $items,
+                'jumlah_besar' => $total
+            ];
+            header("Location: index.php?menu=invois");
+            exit;
+        } else {
+            echo "<script>alert('Sila pilih sekurang-kurangnya satu biskut.');</script>";
+        }
+    }
+    ?>
+
+    <h1 class="page-title">Borang Tempahan</h1>
+    <form method="POST" id="orderForm">
+        <div class="product-grid">
+            <?php foreach ($data as $produk): ?>
+                <div class="product-card">
+                    <img src="gambar/<?= htmlspecialchars($produk['gambar']) ?>" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name"><?= htmlspecialchars($produk['nama']) ?></h3>
+                        <?php foreach ($produk['harga'] as $saiz => $harga): ?>
+                            <div class="product-option">
+                                <div class="option-label">
+                                    <span class="label-saiz"><?= ucwords(str_replace('_',' ',$saiz)) ?></span>
+                                    <span class="label-harga">RM <?= number_format($harga, 2) ?></span>
+                                </div>
+                                <input type="number" name="tempahan[<?= $produk['id'] ?>][<?= $saiz ?>]" 
+                                       value="0" min="0" class="qty-input" 
+                                       data-price="<?= $harga ?>" oninput="calculateTotal()">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="checkout-card">
+            <div class="price-row">
+                <span class="total-label">Jumlah Harga:</span>
+                <span id="totalPrice" class="grand-total">RM 0.00</span>
+            </div>
+            
+            <div class="name-input-section">
+                <label>Nama Penuh Anda:</label>
+                <input type="text" name="nama_pelanggan" placeholder="Contoh: Ali Bin Abu" required>
+            </div>
+            
+            <button type="submit" class="btn-teruskan">Teruskan</button>
+        </div>
+    </form>
+
+    <script>
+    function calculateTotal() {
+        let total = 0;
+        document.querySelectorAll('.qty-input').forEach(input => {
+            let qty = parseInt(input.value) || 0;
+            let price = parseFloat(input.dataset.price);
+            total += qty * price;
+        });
+        document.getElementById('totalPrice').innerText = 'RM ' + total.toFixed(2);
+    }
+    </script>
+
+<?php 
+// --- HALAMAN INVOIS ---
+elseif ($menu === 'invois'): ?>
+    <?php
+    if (!isset($_SESSION['invois_data'])) {
+        echo "<script>alert('Sila buat tempahan dahulu.'); window.location.href='index.php?menu=tempah';</script>";
+        exit;
+    }
+    $invois = $_SESSION['invois_data'];
+    ?>
+    <h1 class="page-title">Invois Tempahan Biskut Klasik</h1>
+    <div class="invoice-box">
+        <div class="invoice-header">
+            <div><strong>Kepada:</strong><br><?= $invois['nama_pelanggan'] ?></div>
+            <div style="text-align:right;">
+                <strong>No. Invois:</strong> <?= $invois['no_invois'] ?><br>
+                <strong>Tarikh:</strong> <?= $invois['tarikh'] ?>
+            </div>
+        </div>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Produk</th><th>Saiz</th><th>Harga</th><th>Kuantiti</th><th>Jumlah</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($invois['items'] as $item): ?>
+                    <tr>
+                        <td><?= $item['nama_produk'] ?></td>
+                        <td><?= $item['saiz'] ?></td>
+                        <td>RM <?= number_format($item['harga_seunit'], 2) ?></td>
+                        <td><?= $item['kuantiti'] ?></td>
+                        <td>RM <?= number_format($item['jumlah_harga'], 2) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"><strong>Jumlah Besar</strong></td>
+                    <td><strong>RM <?= number_format($invois['jumlah_besar'], 2) ?></strong></td>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <div class="invoice-note">
+            <p>* Sila cetak invois ini dan serahkan semasa mengambil tempahan.</p>
+            <p>* Bayaran boleh dibuat secara tunai atau imbas Kod QR semasa pengambilan.</p>
+        </div>
+
+        <div class="action-buttons">
+            <button onclick="window.print()" class="print-btn">Cetak Invois</button>
+        </div>
+    </div>
+
+<?php endif; ?>
+
+<?php include "footer.php"; ?>
+=======
         if ($jumlah_besar == 0) {
             echo "<script>alert('Sila pilih sekurang-kurangnya satu jenis biskut sebelum meneruskan tempahan.'); window.location.href='index.php?menu=tempah';</script>";
             exit();
@@ -503,3 +584,4 @@ if ($menu === 'utama') {
     </html>
     <?php
 }
+>>>>>>> upstream/main
