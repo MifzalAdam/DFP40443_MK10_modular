@@ -1,36 +1,53 @@
-<h1 class="page-title">Borang Tempahan</h1>
-
-<?php if (isset($_GET['error'])): ?>
-<p style="color:red;">Sila pilih sekurang-kurangnya satu biskut.</p>
-<?php endif; ?>
-
-<form method="POST" action="process_tempahan.php">
+<form method="POST" action="index.php?menu=checkout">
 
 <div class="product-grid">
-<?php foreach ($data as $produk): ?>
+
+<?php
+include "config.php";
+
+$sql = "SELECT * FROM produk";
+$result = mysqli_query($conn,$sql);
+
+while($row = mysqli_fetch_assoc($result)){
+?>
+
 <div class="product-card">
-    <img src="gambar/<?= $produk['gambar'] ?>" class="product-image">
 
-    <h3><?= $produk['nama'] ?></h3>
+    <img src="images/<?php echo $row['gambar']; ?>" class="product-image">
 
-    <?php foreach ($produk['harga'] as $saiz => $harga): ?>
-        <div class="product-option">
-            <span><?= $saiz ?> (RM <?= $harga ?>)</span>
-            <input type="number" name="tempahan[<?= $produk['id'] ?>][<?= $saiz ?>]"
-                   value="0" min="0" class="qty-input" data-price="<?= $harga ?>">
+    <h3 class="product-name">
+        <?php echo $row['nama_produk']; ?>
+    </h3>
+
+    <div class="product-option">
+
+        <div class="option-label">
+            <span class="option-name">
+                RM <?php echo $row['harga']; ?>
+            </span>
         </div>
-    <?php endforeach; ?>
+
+        <!-- IMPORTANT PART -->
+        <input
+            type="number"
+            name="qty[<?php echo $row['id_produk']; ?>]"
+            class="qty-input"
+            value="0"
+            min="0"
+        >
+
+    </div>
 
 </div>
-<?php endforeach; ?>
+
+<?php } ?>
+
 </div>
 
-<div class="checkout-card">
-    <h3>Jumlah: <span id="totalPrice">RM 0.00</span></h3>
+<br>
 
-    <input type="text" name="nama_pelanggan" placeholder="Nama penuh" required>
-
-    <button type="submit" class="btn-teruskan">Teruskan</button>
-</div>
+<button type="submit" class="btn-teruskan">
+    Teruskan
+</button>
 
 </form>
