@@ -3,7 +3,6 @@
 <div class="product-grid">
 
 <?php
-include "config.php";
 
 $sql = "SELECT * FROM produk";
 $result = mysqli_query($conn,$sql);
