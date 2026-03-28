@@ -2,13 +2,6 @@
 
 <div class="product-grid">
 
-<?php
-
-$sql = "SELECT * FROM produk";
-$result = mysqli_query($conn,$sql);
-
-while($row = mysqli_fetch_assoc($result)){
-?>
 
 <div class="product-card">
 
