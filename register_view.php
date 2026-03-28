@@ -1,4 +1,5 @@
-<?php include 'register_process.php'; ?>
+<?php include 'register_process.php';
+include 'nav.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
