@@ -31,7 +31,7 @@ body, html {
 }
 
 .site-title {
-    font-family: 'Times New Roman', cursive;
+    font-family: 'Imperial Script', cursive;
     font-size: 4.5rem;
     color: #fff;
     margin: 0;
@@ -240,7 +240,7 @@ body, html {
     border-radius: 8px;
     font-size: 1.2rem;
     cursor: pointer;
-    transition:all 0.3s;
+    transition: background 0.3s;
 }
 
 .btn-teruskan:hover {
