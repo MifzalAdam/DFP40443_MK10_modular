@@ -144,6 +144,28 @@ body {
     font-weight: bold;
 }
 
+.btn-invois {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-invois:hover {
+    background-color: #555;
+}
+
+/* Pastikan butang ni tak ikut keluar dalam kertas masa print */
+@media print {
+    .btn-invois, .no-print {
+        display: none !important;
+    }
+}
+
 .footer {
     background: #333;
     color: white;

@@ -43,6 +43,26 @@ $inv = $_SESSION['invois_data'];
     <td class="text-right total">RM <?= number_format($inv['total'], 2) ?></td>
 </tr>
 
+<?php if (isset($_GET['action']) && $_GET['action'] == 'print'): ?>
+<script>
+    window.onload = function() {
+        window.print();
+        
+        // Opsional: Lepas print/save, kalau nak dia balik ke page asal automatik
+        // window.onafterprint = function() {
+        //    window.history.back();
+        // };
+    };
+</script>
+<?php endif; ?>
+
+...
+    </div> <div style="text-align: center; margin-top: 30px;">
+        <a href="index.php?menu=invois" class="btn-invois-index">
+            Lihat Invois Anda
+        </a>
+    </div>
+    
 </table>
 
 </div>
