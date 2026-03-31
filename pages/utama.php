@@ -15,7 +15,7 @@
 
 </div>
 
-<<div class="booking-info-box">
+<div class="booking-info-box">
     <h2 class="booking-title">Cara Membuat Tempahan</h2>
     
     <div class="booking-details">
