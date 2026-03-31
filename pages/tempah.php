@@ -57,6 +57,8 @@
 
 </form>
 
+<script>
+
 const form = document.querySelector("form");
 const popup = document.getElementById("popup");
 
@@ -82,3 +84,5 @@ form.addEventListener("submit", function(e){
 function closePopup(){
     popup.style.display = "none";
 }
+
+</script>
