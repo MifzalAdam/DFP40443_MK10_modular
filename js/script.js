@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
+    if (totalAmount <= 0) {
+                e.preventDefault();
+                alert('Sila pilih sekurang-kurangnya satu jenis biskut sebelum meneruskan tempahan.');
+            }
 
     inputs.forEach(function (input) {
         input.addEventListener("input", kiraTotal);
