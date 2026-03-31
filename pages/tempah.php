@@ -55,12 +55,30 @@
 
 </div>
 
-<div id="popup" class="popup">
-   <div class="popup-box">
-      Sila pilih sekurang-kurangnya satu jenis biskut sebelum meneruskan tempahan.
-      <br><br>
-      <button onclick="closePopup()">OK</button>
-   </div>
-</div>
-
 </form>
+
+const form = document.querySelector("form");
+const popup = document.getElementById("popup");
+
+form.addEventListener("submit", function(e){
+
+    let qtyInputs = document.querySelectorAll(".qty-input");
+    let adaPilihan = false;
+
+    qtyInputs.forEach(function(input){
+        if(parseInt(input.value) > 0){
+            adaPilihan = true;
+        }
+    });
+
+    // kalau tak pilih apa apa
+    if(!adaPilihan){
+        e.preventDefault(); // STOP submit
+        popup.style.display = "flex";
+    }
+
+});
+
+function closePopup(){
+    popup.style.display = "none";
+}
