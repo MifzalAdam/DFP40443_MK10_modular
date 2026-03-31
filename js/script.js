@@ -23,10 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
     }
-    if (totalAmount <= 0) {
-                e.preventDefault();
-                alert('Sila pilih sekurang-kurangnya satu jenis biskut sebelum meneruskan tempahan.');
-            }
+    function checkTempahan(){
+
+    var biskut = document.querySelectorAll('input[name="biskut[]"]:checked');
+
+    if(biskut.length === 0){
+        document.getElementById("popup").style.display="block";
+        return false;
+    }
+}
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
 
     inputs.forEach(function (input) {
         input.addEventListener("input", kiraTotal);

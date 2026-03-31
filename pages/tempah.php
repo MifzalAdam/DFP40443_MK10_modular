@@ -55,4 +55,12 @@
 
 </div>
 
+<div id="popup" class="popup">
+   <div class="popup-box">
+      Sila pilih sekurang-kurangnya satu jenis biskut sebelum meneruskan tempahan.
+      <br><br>
+      <button onclick="closePopup()">OK</button>
+   </div>
+</div>
+
 </form>
