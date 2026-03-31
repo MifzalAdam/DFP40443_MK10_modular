@@ -144,26 +144,39 @@ body {
     font-weight: bold;
 }
 
-.btn-invois {
-    display: inline-block;
-    background-color: #333;
-    color: white;
-    padding: 8px 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: 0.3s;
+.action-buttons {
+    text-align: center;
 }
 
-.btn-invois:hover {
+.print-btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.print-btn:hover {
     background-color: #555;
 }
 
-/* Pastikan butang ni tak ikut keluar dalam kertas masa print */
+/* 
+   GAYA CETAKAN (PRINT STYLES) | PRINT STYLES
+   Dijalankan hanya apabila pengguna ingin mencetak halaman (Ctrl+P). | Executed only when the user wants to print the page (Ctrl+P).
+*/
 @media print {
-    .btn-invois, .no-print {
-        display: none !important;
-    }
+    /* Sembunyikan navigasi, butang, dan footer semasa mencetak | Hide navigation, buttons, and footer during printing */
+    .header-wrapper, .footer-site, .action-buttons, nav { display: none !important; }
+    body { background-color: #fff; padding: 0; }
+    .container { width: 100%; max-width: 100%; margin: 0; }
+    .invoice-table { border: 2px solid #000 !important; }
+    .table-cell { border: 1px solid #000 !important; color: #000 !important; }
+    .invoice-box { box-shadow: none; border: none; padding: 0; margin: 0; width: 100%; max-width: 100%; }
+    .invoice-table th, .invoice-table td { border-bottom: 2px solid #000 !important; }
+    .total-amount-cell { color: #000 !important; }
 }
 
 .footer {
