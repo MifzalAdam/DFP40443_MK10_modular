@@ -4,6 +4,13 @@
 
 <div class="form-grid">
 
+<div class="gallery-row">
+    <!-- Menggelung data produk yang diambil daripada Model melalui Controller | Looping product data retrieved from Model through Controller -->
+    <?php foreach ($data as $produk): ?>
+        <img src="<?= IMG_URL . htmlspecialchars($produk['gambar']) ?>" alt="<?= htmlspecialchars($produk['nama']) ?>" class="gallery-img">
+    <?php endforeach; ?>
+</div>
+
 <div class="instructions-section">
     <h3>Cara Membuat Tempahan</h3>
     <p>
