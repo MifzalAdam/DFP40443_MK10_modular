@@ -43,10 +43,11 @@ $inv = $_SESSION['invois_data'];
     <td class="text-right total">RM <?= number_format($inv['total'], 2) ?></td>
 </tr>
 
+</table>
+
 <!-- Butang tindakan untuk mencetak menggunakan fungsi JavaScript tetingkap (window.print) | Action button to print using JavaScript window function (window.print) -->
     <div class="action-buttons">
         <button onclick="window.print()" class="print-btn">Cetak Invois</button>
     </div>
-</table>
 
 </div>
